@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Commerce Market Map</title>
+<meta name="description" content="Market map of the agentic commerce ecosystem — human-in-the-loop and autonomous agent infrastructure, April 2026.">
+<meta property="og:title" content="Agentic Commerce Market Map">
+<meta property="og:description" content="Two markets: human-in-the-loop (B2C) and autonomous agents (B2B). Discovery, payments, identity, wallets, and shared infrastructure.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased;font-size:12px}
+  .page{max-width:1280px;margin:0 auto;padding:24px 20px 32px}
+  .hdr{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+  h1{font-size:22px;font-weight:900;letter-spacing:-.8px}
+  .meta{font-size:10px;color:#999;font-weight:500;display:flex;gap:12px}
+  .thesis{font-size:11px;color:#666;line-height:1.5;margin-bottom:16px;max-width:900px}
+  .thesis strong{color:#111}
+  .markets{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:860px){.markets{grid-template-columns:1fr}}
+  .market{border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden}
+  .market-hdr{padding:10px 14px 8px;display:flex;align-items:center;gap:8px}
+  .market-hdr h2{font-size:14px;font-weight:800;letter-spacing:-.3px}
+  .market-hdr .badge{font-size:9px;font-weight:600;padding:2px 7px;border-radius:10px;color:#fff}
+  .market-hdr .flow{font-size:9px;color:#aaa;margin-left:auto;font-weight:400}
+  .m1 .market-hdr{background:#f0fdf4;border-bottom:1.5px solid #bbf7d0}
+  .m1 .market-hdr .badge{background:#22c55e}
+  .m2 .market-hdr{background:#faf5ff;border-bottom:1.5px solid #e9d5ff}
+  .m2 .market-hdr .badge{background:#8b5cf6}
+  .market-body{padding:8px}
+  .cat{margin-bottom:8px;border:1px solid #f0f0f0;border-radius:8px;overflow:hidden}
+  .cat:last-child{margin-bottom:0}
+  .cat-hdr{display:flex;align-items:center;gap:6px;padding:6px 10px;background:#fafafa;border-bottom:1px solid #f0f0f0}
+  .cat-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#555}
+  .cat-note{font-size:9px;color:#bbb;margin-left:auto;font-style:italic}
+  .chips{display:flex;flex-wrap:wrap;gap:4px;padding:8px 8px 6px}
+  .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 4px;border-radius:6px;border:1px solid #eee;text-decoration:none;color:inherit;transition:all .12s;background:#fff;white-space:nowrap}
+  .chip:hover{border-color:#ccc;background:#f9f9f9;transform:translateY(-1px);box-shadow:0 2px 4px rgba(0,0,0,.04)}
+  .chip:focus-visible{outline:2px solid #6366f1;outline-offset:1px}
+  .chip img{width:16px;height:16px;border-radius:3px;object-fit:contain}
+  .chip .ic{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0}
+  .chip-n{font-size:10px;font-weight:600}
+  .chip .star{color:#f59e0b;font-size:8px;margin-left:1px}
+  .chip .tag{font-size:7px;font-weight:700;padding:1px 4px;border-radius:3px;margin-left:2px}
+  .chip .tag.proto{background:#ede9fe;color:#7c3aed}
+  .chip .tag.acq{background:#fef3c7;color:#d97706}
+  .chip .tag.raised{background:#dcfce7;color:#16a34a}
+  .chip.feat{border-color:#ddd;background:#fafafa;padding:4px 8px 4px 5px}
+  .chip.feat .chip-n{font-weight:700}
+  .chip.feat img,.chip.feat .ic{width:18px;height:18px}
+  .shared{border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+  .shared-hdr{padding:8px 14px;background:#eef2ff;border-bottom:1.5px solid #c7d2fe;display:flex;align-items:center;gap:8px}
+  .shared-hdr h2{font-size:13px;font-weight:800;letter-spacing:-.2px;color:#4338ca}
+  .shared-body{padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media(max-width:700px){.shared-body{grid-template-columns:1fr}}
+  .footer{margin-top:16px;padding-top:10px;border-top:1px solid #f0f0f0;font-size:9px;color:#ccc;text-align:center}
+  @media print{body{font-size:10px}.page{padding:12px}.chip:hover{transform:none;box-shadow:none}.market,.shared{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hdr">
+  <h1>Agentic Commerce Market Map</h1>
+  <div class="meta"><span>Based on Artemis Landscape</span><span>April 2026</span></div>
+</div>
+<p class="thesis"><strong>Two separate markets.</strong> A <strong>human-in-the-loop market</strong> (arriving now, B2C first) that improves discovery with final approval from the user, and an <strong>autonomous agent market</strong> (being built, B2B first) where agents decide, pay, and execute independently on new infrastructure.</p>
+
+<div class="markets">
+
+<!-- ════════ MARKET 1 ════════ -->
+<div class="market m1">
+  <div class="market-hdr">
+    <h2>Human in the Loop</h2>
+    <span class="badge">B2C First</span>
+    <span class="flow">Prompt → Search → Rank → Approve → Pay</span>
+  </div>
+  <div class="market-body">
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">User Interfaces</span><span class="cat-note">where users start</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://openai.com" target="_blank"><span class="ic" style="background:#10a37f">O</span><span class="chip-n">ChatGPT<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://anthropic.com" target="_blank"><span class="ic" style="background:#d97706">C</span><span class="chip-n">Claude<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://gemini.google.com" target="_blank"><span class="ic" style="background:#4285f4">G</span><span class="chip-n">Gemini<span class="star">★</span></span></a>
+        <a class="chip" href="https://perplexity.ai" target="_blank"><span class="ic" style="background:#1a1a2e">P</span><span class="chip-n">Perplexity</span></a>
+        <a class="chip" href="https://x.ai" target="_blank"><span class="ic" style="background:#111">X</span><span class="chip-n">Grok</span></a>
+        <a class="chip" href="https://telegram.org" target="_blank"><span class="ic" style="background:#0088cc">T</span><span class="chip-n">Telegram</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Discovery & GEO</span><span class="cat-note">SEO → GEO</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://tryprofound.com" target="_blank"><span class="ic" style="background:#6366f1">P</span><span class="chip-n">Profound<span class="star">★</span></span><span class="tag raised">$134M Sequoia</span></a>
+        <a class="chip feat" href="https://airops.com" target="_blank"><span class="ic" style="background:#3b82f6">A</span><span class="chip-n">AirOps<span class="star">★</span></span><span class="tag raised">$60M Greylock</span></a>
+        <a class="chip" href="https://brandlight.ai" target="_blank"><span class="ic" style="background:#f97316">B</span><span class="chip-n">Brandlight</span><span class="tag raised">$36M</span></a>
+        <a class="chip" href="https://phia.com" target="_blank"><span class="ic" style="background:#ec4899">P</span><span class="chip-n">Phia</span><span class="tag raised">$35M Khosla</span></a>
+        <a class="chip" href="https://evertune.ai" target="_blank"><span class="ic" style="background:#06b6d4">E</span><span class="chip-n">Evertune</span><span class="tag raised">$19M</span></a>
+        <a class="chip" href="https://trychannel3.com" target="_blank"><span class="ic" style="background:#f59e0b">C</span><span class="chip-n">Channel3</span><span class="tag raised">$6M</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Facilitators</span><span class="cat-note">bridge intent → execution</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://stripe.com" target="_blank"><span class="ic" style="background:#635bff">S</span><span class="chip-n">Stripe<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://shopify.com" target="_blank"><span class="ic" style="background:#96bf48">S</span><span class="chip-n">Shopify<span class="star">★</span></span></a>
+        <a class="chip" href="https://didero.com" target="_blank"><span class="ic" style="background:#0ea5e9">D</span><span class="chip-n">Didero</span><span class="tag raised">$37M</span></a>
+        <a class="chip" href="https://spangle.ai" target="_blank"><span class="ic" style="background:#8b5cf6">S</span><span class="chip-n">Spangle AI</span><span class="tag raised">$21M</span></a>
+        <a class="chip" href="https://rye.com" target="_blank"><span class="ic" style="background:#111">R</span><span class="chip-n">Rye</span><span class="tag raised">$14M a16z</span></a>
+        <a class="chip" href="https://lemrock.com" target="_blank"><span class="ic" style="background:#ec4899">L</span><span class="chip-n">Lemrock</span><span class="tag raised">€6M</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Identity & Trust</span><span class="cat-note">KYC → KYA</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://visa.com" target="_blank"><span class="ic" style="background:#1a1f71">V</span><span class="chip-n">Visa<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://mastercard.com" target="_blank"><span class="ic" style="background:#eb001b">M</span><span class="chip-n">Mastercard<span class="star">★</span></span><span class="tag acq">Acq. BVNK $1.8B</span></a>
+        <a class="chip" href="https://aembit.io" target="_blank"><span class="ic" style="background:#22c55e">A</span><span class="chip-n">Aembit</span><span class="tag raised">$45M</span></a>
+        <a class="chip" href="https://vouched.id" target="_blank"><span class="ic" style="background:#3b82f6">V</span><span class="chip-n">Vouched</span><span class="tag raised">$22M</span></a>
+        <a class="chip" href="https://trulioo.com" target="_blank"><span class="ic" style="background:#00c389">T</span><span class="chip-n">Trulioo</span></a>
+        <a class="chip" href="https://prove.com" target="_blank"><span class="ic" style="background:#0ea5e9">P</span><span class="chip-n">Prove</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════ MARKET 2 ════════ -->
+<div class="market m2">
+  <div class="market-hdr">
+    <h2>Autonomous Agents</h2>
+    <span class="badge">B2B First</span>
+    <span class="flow">Policy → Evaluate → Permission → Execute → Learn</span>
+  </div>
+  <div class="market-body">
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Agent Frameworks & Tooling</span><span class="cat-note">largest category</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://langchain.com" target="_blank"><span class="ic" style="background:#1c3c3c">L</span><span class="chip-n">LangChain<span class="star">★</span></span><span class="tag raised">$260M</span></a>
+        <a class="chip feat" href="https://crewai.com" target="_blank"><span class="ic" style="background:#ef4444">C</span><span class="chip-n">CrewAI<span class="star">★</span></span><span class="tag raised">$24.5M</span></a>
+        <a class="chip feat" href="https://cloudflare.com" target="_blank"><span class="ic" style="background:#f48120">C</span><span class="chip-n">Cloudflare<span class="star">★</span></span></a>
+        <a class="chip" href="https://e2b.dev" target="_blank"><span class="ic" style="background:#f97316">E</span><span class="chip-n">E2B</span><span class="tag raised">$32M</span></a>
+        <a class="chip" href="https://openserv.ai" target="_blank"><span class="ic" style="background:#3b82f6">O</span><span class="chip-n">OpenServ</span></a>
+        <a class="chip" href="https://sendai.fun" target="_blank"><span class="ic" style="background:#ec4899">S</span><span class="chip-n">SendAI</span></a>
+        <a class="chip" href="https://daydreams.systems" target="_blank"><span class="ic" style="background:#8b5cf6">D</span><span class="chip-n">Daydreams</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Agent Networks</span><span class="cat-note">agents hiring agents</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://fetch.ai" target="_blank"><span class="ic" style="background:#1b1464">F</span><span class="chip-n">Fetch.ai<span class="star">★</span></span><span class="tag raised">$61M+</span></a>
+        <a class="chip feat" href="https://virtuals.io" target="_blank"><span class="ic" style="background:#3b82f6">V</span><span class="chip-n">Virtuals Protocol<span class="star">★</span></span></a>
+        <a class="chip" href="https://bittensor.com" target="_blank"><span class="ic" style="background:#111">B</span><span class="chip-n">Bittensor</span></a>
+        <a class="chip" href="https://questflow.ai" target="_blank"><span class="ic" style="background:#ec4899">Q</span><span class="chip-n">Questflow</span><span class="tag raised">$6.5M</span></a>
+        <a class="chip" href="https://heurist.ai" target="_blank"><span class="ic" style="background:#06b6d4">H</span><span class="chip-n">Heurist</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Payment Infrastructure</span><span class="cat-note">how agents pay</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://paid.ai" target="_blank"><span class="ic" style="background:#6366f1">P</span><span class="chip-n">Paid<span class="star">★</span></span><span class="tag raised">$33M Lightspeed</span></a>
+        <a class="chip feat" href="https://basistheory.com" target="_blank"><span class="ic" style="background:#111">B</span><span class="chip-n">Basis Theory<span class="star">★</span></span><span class="tag raised">$33M</span></a>
+        <a class="chip feat" href="https://circuitandchisel.com" target="_blank"><span class="ic" style="background:#0052ff">C</span><span class="chip-n">Circuit & Chisel</span><span class="tag raised">$19.2M</span></a>
+        <a class="chip" href="https://catenalabs.com" target="_blank"><span class="ic" style="background:#0ea5e9">C</span><span class="chip-n">Catena Labs</span><span class="tag raised">$18M a16z</span></a>
+        <a class="chip" href="https://sapiom.ai" target="_blank"><span class="ic" style="background:#14b8a6">S</span><span class="chip-n">Sapiom</span><span class="tag raised">$15.75M Accel</span></a>
+        <a class="chip" href="https://paymanai.com" target="_blank"><span class="ic" style="background:#f43f5e">P</span><span class="chip-n">Payman AI</span><span class="tag raised">$13M</span></a>
+        <a class="chip" href="https://natural.co" target="_blank"><span class="ic" style="background:#22c55e">N</span><span class="chip-n">Natural</span><span class="tag raised">$9.8M</span></a>
+        <a class="chip" href="https://skyfire.xyz" target="_blank"><span class="ic" style="background:#f97316">S</span><span class="chip-n">Skyfire</span><span class="tag raised">$9.5M</span></a>
+        <a class="chip" href="https://crossmint.com" target="_blank"><span class="ic" style="background:#22d3ee">C</span><span class="chip-n">Crossmint</span></a>
+        <span class="chip"><span class="ic" style="background:#0052ff">B</span><span class="chip-n">BVNK</span><span class="tag acq">Acq. $1.8B</span></span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Wallets</span><span class="cat-note">embedded custody + session keys</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://coinbase.com" target="_blank"><span class="ic" style="background:#0052ff">C</span><span class="chip-n">Coinbase Wallets<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://privy.io" target="_blank"><span class="ic" style="background:#6366f1">P</span><span class="chip-n">Privy<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://fireblocks.com" target="_blank"><span class="ic" style="background:#f97316">F</span><span class="chip-n">Fireblocks<span class="star">★</span></span></a>
+        <a class="chip" href="https://dynamic.xyz" target="_blank"><span class="ic" style="background:#8b5cf6">D</span><span class="chip-n">Dynamic</span></a>
+        <a class="chip" href="https://phantom.app" target="_blank"><span class="ic" style="background:#ab9ff2">P</span><span class="chip-n">Phantom</span></a>
+        <a class="chip" href="https://turnkey.com" target="_blank"><span class="ic" style="background:#0ea5e9">T</span><span class="chip-n">Turnkey</span></a>
+        <a class="chip" href="https://nekuda.com" target="_blank"><span class="ic" style="background:#3b82f6">N</span><span class="chip-n">Nekuda</span><span class="tag raised">$5M Visa</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Blockchains & Settlement</span><span class="cat-note">latency, cost, composability</span></div>
+      <div class="chips">
+        <span class="chip feat"><span class="ic" style="background:#0052ff">B</span><span class="chip-n">Base<span class="star">★</span></span></span>
+        <a class="chip feat" href="https://solana.com" target="_blank"><span class="ic" style="background:#9945ff">S</span><span class="chip-n">Solana<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://tempo.xyz" target="_blank"><span class="ic" style="background:#a855f7">T</span><span class="chip-n">Tempo<span class="star">★</span></span></a>
+        <a class="chip" href="https://gokite.ai" target="_blank"><span class="ic" style="background:#ef4444">K</span><span class="chip-n">Kite</span><span class="tag raised">$33M</span></a>
+        <a class="chip" href="https://polygon.technology" target="_blank"><span class="ic" style="background:#8247e5">P</span><span class="chip-n">Polygon</span></a>
+        <a class="chip" href="https://arbitrum.io" target="_blank"><span class="ic" style="background:#2563eb">A</span><span class="chip-n">Arbitrum</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /markets -->
+
+<!-- ════════ SHARED ════════ -->
+<div class="shared">
+  <div class="shared-hdr"><h2>Shared Infrastructure</h2></div>
+  <div class="shared-body">
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Foundation Models</span></div>
+      <div class="chips">
+        <a class="chip" href="https://anthropic.com" target="_blank"><span class="ic" style="background:#d97706">A</span><span class="chip-n">Anthropic</span></a>
+        <a class="chip" href="https://openai.com" target="_blank"><span class="ic" style="background:#10a37f">O</span><span class="chip-n">OpenAI</span></a>
+        <a class="chip" href="https://deepmind.google" target="_blank"><span class="ic" style="background:#4285f4">G</span><span class="chip-n">Google</span></a>
+        <a class="chip" href="https://meta.com" target="_blank"><span class="ic" style="background:#0668e1">M</span><span class="chip-n">Meta</span></a>
+        <a class="chip" href="https://x.ai" target="_blank"><span class="ic" style="background:#111">X</span><span class="chip-n">xAI</span></a>
+      </div>
+    </div>
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Stablecoins</span><span class="cat-note">99% of agent payments in USDC</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://circle.com" target="_blank"><span class="ic" style="background:#00d395">U</span><span class="chip-n">USDC (Circle)<span class="star">★</span></span></a>
+        <span class="chip"><span class="ic" style="background:#26a17b">T</span><span class="chip-n">USDT (Tether)</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Agentic Commerce Market Map · Based on Artemis Landscape · April 2026</div>
+
+</div>
+</body>
+</html>
