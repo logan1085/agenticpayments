@@ -41,8 +41,8 @@
 
   .markets{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
   @media(max-width:900px){.markets{grid-template-columns:1fr}}
-  .market{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
-  .market-hdr{padding:12px 16px 10px;display:flex;align-items:center;gap:10px}
+  .market{border:1.5px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .market-hdr{padding:12px 16px 10px;display:flex;align-items:center;gap:10px;border-radius:10.5px 10.5px 0 0}
   .market-hdr h2{font-size:15px;font-weight:800;letter-spacing:-.3px}
   .market-hdr .badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.3px}
   .market-hdr .flow{font-size:9px;color:#9ca3af;margin-left:auto;font-weight:500;font-family:ui-monospace,monospace}
@@ -52,16 +52,40 @@
   .m2 .market-hdr .badge{background:var(--m2)}
   .market-body{padding:10px}
 
-  .cat{margin-bottom:8px;border:1px solid #f1f1f1;border-radius:9px;overflow:hidden;background:#fff}
+  .cat{margin-bottom:8px;border:1px solid #f1f1f1;border-radius:9px;background:#fff}
   .cat:last-child{margin-bottom:0}
-  .cat-hdr{display:flex;align-items:center;gap:6px;padding:7px 11px;background:#fafafa;border-bottom:1px solid #f1f1f1}
+  .cat-hdr{display:flex;align-items:center;gap:6px;padding:7px 11px;background:#fafafa;border-bottom:1px solid #f1f1f1;border-radius:8px 8px 0 0}
   .cat-name{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#374151}
   .cat-note{font-size:9px;color:#9ca3af;margin-left:auto;font-style:italic}
 
   .chips{display:flex;flex-wrap:wrap;gap:5px;padding:9px 9px 7px}
-  .chip{display:inline-flex;align-items:center;gap:5px;padding:4px 9px 4px 5px;border-radius:7px;border:1px solid #ececec;text-decoration:none;color:inherit;transition:all .14s ease;background:#fff;white-space:nowrap}
-  .chip:hover{border-color:#c7c7c7;background:#fafafa;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.05)}
-  .chip:focus-visible{outline:2px solid #6366f1;outline-offset:1px}
+  .chip{position:relative;display:inline-flex;align-items:center;gap:5px;padding:4px 9px 4px 5px;border-radius:7px;border:1px solid #ececec;text-decoration:none;color:inherit;transition:all .14s ease;background:#fff;white-space:nowrap}
+  .chip:hover{border-color:#c7c7c7;background:#fafafa;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.05);z-index:20}
+  .chip:focus-visible{outline:2px solid #6366f1;outline-offset:1px;z-index:20}
+  /* Tooltip blurbs */
+  .chip[data-blurb]::after{
+    content:attr(data-blurb);
+    position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
+    background:#0a0a0a;color:#fff;padding:7px 10px;border-radius:6px;
+    font-size:10px;font-weight:500;line-height:1.45;letter-spacing:0;
+    white-space:normal;width:max-content;max-width:240px;text-align:left;
+    box-shadow:0 8px 24px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.08);
+    opacity:0;pointer-events:none;z-index:30;
+    transition:opacity .16s ease,transform .16s ease;
+  }
+  .chip[data-blurb]::before{
+    content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%) translateY(4px);
+    border:5px solid transparent;border-top-color:#0a0a0a;
+    opacity:0;pointer-events:none;z-index:30;
+    transition:opacity .16s ease,transform .16s ease;
+  }
+  .chip[data-blurb]:hover::after,
+  .chip[data-blurb]:focus-visible::after,
+  .chip[data-blurb]:hover::before,
+  .chip[data-blurb]:focus-visible::before{
+    opacity:1;transform:translateX(-50%) translateY(0);
+  }
+  @media(hover:none){.chip[data-blurb]:hover::after,.chip[data-blurb]:hover::before{opacity:0}}
   .chip img{width:16px;height:16px;border-radius:3px;object-fit:contain;background:#f3f4f6;flex-shrink:0}
   .chip-n{font-size:10px;font-weight:600}
   .chip .star{color:#f59e0b;font-size:9px;margin-left:2px}
@@ -73,8 +97,8 @@
   .chip.feat .chip-n{font-weight:800}
   .chip.feat img{width:18px;height:18px}
 
-  .shared{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
-  .shared-hdr{padding:10px 16px;background:var(--sh-bg);border-bottom:1.5px solid var(--sh-ln);display:flex;align-items:center;gap:10px}
+  .shared{border:1.5px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .shared-hdr{padding:10px 16px;background:var(--sh-bg);border-bottom:1.5px solid var(--sh-ln);display:flex;align-items:center;gap:10px;border-radius:10.5px 10.5px 0 0}
   .shared-hdr h2{font-size:14px;font-weight:800;letter-spacing:-.2px;color:var(--sh)}
   .shared-hdr .flow{font-size:9px;color:#818cf8;margin-left:auto;font-weight:500;font-family:ui-monospace,monospace}
   .shared-body{padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
@@ -130,61 +154,61 @@
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">User Interfaces</span><span class="cat-note">where the shopper starts</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://chatgpt.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""><span class="chip-n">ChatGPT<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://claude.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Claude<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://gemini.google.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" alt=""><span class="chip-n">Gemini<span class="star">★</span></span></a>
-        <a class="chip" href="https://perplexity.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" alt=""><span class="chip-n">Perplexity</span></a>
-        <a class="chip" href="https://x.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">Grok</span></a>
-        <a class="chip" href="https://copilot.microsoft.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt=""><span class="chip-n">Copilot</span></a>
-        <a class="chip" href="https://telegram.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=64" alt=""><span class="chip-n">Telegram</span></a>
+        <a class="chip feat" href="https://chatgpt.com" target="_blank" rel="noopener" data-blurb="OpenAI's consumer assistant — first major shopping integration via the Agentic Commerce Protocol with Stripe and Shopify."><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""><span class="chip-n">ChatGPT<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://claude.ai" target="_blank" rel="noopener" data-blurb="Anthropic's assistant — tool-use leader and the default choice for serious agentic workloads."><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Claude<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://gemini.google.com" target="_blank" rel="noopener" data-blurb="Google's multimodal assistant, deeply wired into Search, Android, Workspace and the Shopping Graph."><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" alt=""><span class="chip-n">Gemini<span class="star">★</span></span></a>
+        <a class="chip" href="https://perplexity.ai" target="_blank" rel="noopener" data-blurb="Answer engine with native shopping cards and Buy with Pro checkout."><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" alt=""><span class="chip-n">Perplexity</span></a>
+        <a class="chip" href="https://x.ai" target="_blank" rel="noopener" data-blurb="xAI's assistant native to X — real-time social signal as a discovery input."><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">Grok</span></a>
+        <a class="chip" href="https://copilot.microsoft.com" target="_blank" rel="noopener" data-blurb="Microsoft's enterprise-wired assistant across Windows, 365 and Edge."><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt=""><span class="chip-n">Copilot</span></a>
+        <a class="chip" href="https://telegram.org" target="_blank" rel="noopener" data-blurb="Bot platform where most crypto and agent commerce experiences ship first."><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=64" alt=""><span class="chip-n">Telegram</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Discovery & GEO</span><span class="cat-note">SEO → generative engine optimization</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://tryprofound.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tryprofound.com&sz=64" alt=""><span class="chip-n">Profound<span class="star">★</span></span><span class="tag raised">$134M Sequoia</span></a>
-        <a class="chip feat" href="https://airops.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=airops.com&sz=64" alt=""><span class="chip-n">AirOps<span class="star">★</span></span><span class="tag raised">$60M Greylock</span></a>
-        <a class="chip" href="https://brandlight.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=brandlight.ai&sz=64" alt=""><span class="chip-n">Brandlight</span><span class="tag raised">$36M</span></a>
-        <a class="chip" href="https://phia.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=phia.com&sz=64" alt=""><span class="chip-n">Phia</span><span class="tag raised">$35M Khosla</span></a>
-        <a class="chip" href="https://evertune.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=evertune.ai&sz=64" alt=""><span class="chip-n">Evertune</span><span class="tag raised">$19M</span></a>
-        <a class="chip" href="https://trychannel3.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=trychannel3.com&sz=64" alt=""><span class="chip-n">Channel3</span><span class="tag raised">$6M</span></a>
-        <a class="chip" href="https://goodie.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=goodie.ai&sz=64" alt=""><span class="chip-n">Goodie</span></a>
+        <a class="chip feat" href="https://tryprofound.com" target="_blank" rel="noopener" data-blurb="GEO analytics leader — tracks how brands appear inside LLM answers. Sequoia-led $134M."><img src="https://www.google.com/s2/favicons?domain=tryprofound.com&sz=64" alt=""><span class="chip-n">Profound<span class="star">★</span></span><span class="tag raised">$134M Sequoia</span></a>
+        <a class="chip feat" href="https://airops.com" target="_blank" rel="noopener" data-blurb="Content and GEO workflows for brands optimizing for LLM distribution. Greylock-led $60M."><img src="https://www.google.com/s2/favicons?domain=airops.com&sz=64" alt=""><span class="chip-n">AirOps<span class="star">★</span></span><span class="tag raised">$60M Greylock</span></a>
+        <a class="chip" href="https://brandlight.ai" target="_blank" rel="noopener" data-blurb="Monitors brand mentions, sentiment and citations across generative search engines."><img src="https://www.google.com/s2/favicons?domain=brandlight.ai&sz=64" alt=""><span class="chip-n">Brandlight</span><span class="tag raised">$36M</span></a>
+        <a class="chip" href="https://phia.com" target="_blank" rel="noopener" data-blurb="Consumer shopping copilot comparing prices and resale across the web."><img src="https://www.google.com/s2/favicons?domain=phia.com&sz=64" alt=""><span class="chip-n">Phia</span><span class="tag raised">$35M Khosla</span></a>
+        <a class="chip" href="https://evertune.ai" target="_blank" rel="noopener" data-blurb="Measures and improves how foundation models represent your brand."><img src="https://www.google.com/s2/favicons?domain=evertune.ai&sz=64" alt=""><span class="chip-n">Evertune</span><span class="tag raised">$19M</span></a>
+        <a class="chip" href="https://trychannel3.com" target="_blank" rel="noopener" data-blurb="Product catalog API connecting agents to real merchant inventory."><img src="https://www.google.com/s2/favicons?domain=trychannel3.com&sz=64" alt=""><span class="chip-n">Channel3</span><span class="tag raised">$6M</span></a>
+        <a class="chip" href="https://goodie.ai" target="_blank" rel="noopener" data-blurb="Agent-ready product feeds and structured commerce data for LLM shopping."><img src="https://www.google.com/s2/favicons?domain=goodie.ai&sz=64" alt=""><span class="chip-n">Goodie</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Facilitators</span><span class="cat-note">bridge intent → merchant execution</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://stripe.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">Stripe<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://shopify.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt=""><span class="chip-n">Shopify<span class="star">★</span></span></a>
-        <a class="chip" href="https://didero.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=didero.com&sz=64" alt=""><span class="chip-n">Didero</span><span class="tag raised">$37M</span></a>
-        <a class="chip" href="https://spangle.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=spangle.ai&sz=64" alt=""><span class="chip-n">Spangle</span><span class="tag raised">$21M</span></a>
-        <a class="chip" href="https://rye.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=rye.com&sz=64" alt=""><span class="chip-n">Rye</span><span class="tag raised">$14M a16z</span></a>
-        <a class="chip" href="https://lemrock.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=lemrock.com&sz=64" alt=""><span class="chip-n">Lemrock</span><span class="tag raised">€6M</span></a>
-        <a class="chip" href="https://firmly.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=firmly.ai&sz=64" alt=""><span class="chip-n">Firmly</span></a>
+        <a class="chip feat" href="https://stripe.com" target="_blank" rel="noopener" data-blurb="Payments incumbent — co-author of the Agentic Commerce Protocol with OpenAI."><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">Stripe<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://shopify.com" target="_blank" rel="noopener" data-blurb="Merchant platform — its Catalog API is the default commerce substrate for agents."><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt=""><span class="chip-n">Shopify<span class="star">★</span></span></a>
+        <a class="chip" href="https://didero.com" target="_blank" rel="noopener" data-blurb="B2B procurement agent that negotiates and buys across supplier catalogs."><img src="https://www.google.com/s2/favicons?domain=didero.com&sz=64" alt=""><span class="chip-n">Didero</span><span class="tag raised">$37M</span></a>
+        <a class="chip" href="https://spangle.ai" target="_blank" rel="noopener" data-blurb="Agentic shopping and checkout infrastructure for the conversational web."><img src="https://www.google.com/s2/favicons?domain=spangle.ai&sz=64" alt=""><span class="chip-n">Spangle</span><span class="tag raised">$21M</span></a>
+        <a class="chip" href="https://rye.com" target="_blank" rel="noopener" data-blurb="Universal checkout API — one integration to buy from any online merchant."><img src="https://www.google.com/s2/favicons?domain=rye.com&sz=64" alt=""><span class="chip-n">Rye</span><span class="tag raised">$14M a16z</span></a>
+        <a class="chip" href="https://lemrock.com" target="_blank" rel="noopener" data-blurb="European agent-commerce infra for cross-border checkout and fulfillment."><img src="https://www.google.com/s2/favicons?domain=lemrock.com&sz=64" alt=""><span class="chip-n">Lemrock</span><span class="tag raised">€6M</span></a>
+        <a class="chip" href="https://firmly.ai" target="_blank" rel="noopener" data-blurb="Headless checkout that drops into any surface, including LLM chat UIs."><img src="https://www.google.com/s2/favicons?domain=firmly.ai&sz=64" alt=""><span class="chip-n">Firmly</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Protocols & Standards</span><span class="cat-note">how LLMs talk to commerce</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://agenticcommerce.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">ACP · Stripe × OpenAI<span class="star">★</span></span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://modelcontextprotocol.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=modelcontextprotocol.io&sz=64" alt=""><span class="chip-n">MCP</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://a2aproject.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">A2A</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://schema.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=schema.org&sz=64" alt=""><span class="chip-n">Schema.org</span><span class="tag proto">Proto</span></a>
+        <a class="chip feat" href="https://agenticcommerce.dev" target="_blank" rel="noopener" data-blurb="Agentic Commerce Protocol — open Stripe + OpenAI spec for agent-initiated checkouts."><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n" data-blurb="Maker of GPT and the broadest agentic API surface in the market.">ACP · Stripe × OpenAI<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://modelcontextprotocol.io" target="_blank" rel="noopener" data-blurb="Anthropic's Model Context Protocol — the emerging standard for tool and data connectors."><img src="https://www.google.com/s2/favicons?domain=modelcontextprotocol.io&sz=64" alt=""><span class="chip-n">MCP</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://a2aproject.dev" target="_blank" rel="noopener" data-blurb="Google's Agent-to-Agent protocol for interoperable agent handoffs."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">A2A</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://schema.org" target="_blank" rel="noopener" data-blurb="Product schema that LLMs crawl to ground commerce answers in structured data."><img src="https://www.google.com/s2/favicons?domain=schema.org&sz=64" alt=""><span class="chip-n">Schema.org</span><span class="tag proto">Proto</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Identity & Trust</span><span class="cat-note">KYC → KYA (know your agent)</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://visa.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt=""><span class="chip-n">Visa<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://mastercard.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt=""><span class="chip-n">Mastercard<span class="star">★</span></span><span class="tag acq">Acq. BVNK $1.8B</span></a>
-        <a class="chip" href="https://aembit.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aembit.io&sz=64" alt=""><span class="chip-n">Aembit</span><span class="tag raised">$45M</span></a>
-        <a class="chip" href="https://vouched.id" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vouched.id&sz=64" alt=""><span class="chip-n">Vouched</span><span class="tag raised">$22M</span></a>
-        <a class="chip" href="https://trulioo.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=trulioo.com&sz=64" alt=""><span class="chip-n">Trulioo</span></a>
-        <a class="chip" href="https://prove.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=prove.com&sz=64" alt=""><span class="chip-n">Prove</span></a>
+        <a class="chip feat" href="https://visa.com" target="_blank" rel="noopener" data-blurb="Trusted Agent Protocol and Intelligent Commerce — verified agent payments on card rails."><img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt=""><span class="chip-n">Visa<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://mastercard.com" target="_blank" rel="noopener" data-blurb="Agent Pay plus the BVNK acquisition — building a stablecoin-native identity stack."><img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt=""><span class="chip-n">Mastercard<span class="star">★</span></span><span class="tag acq">Acq. BVNK $1.8B</span></a>
+        <a class="chip" href="https://aembit.io" target="_blank" rel="noopener" data-blurb="Workload identity and access management for non-human (agent) callers."><img src="https://www.google.com/s2/favicons?domain=aembit.io&sz=64" alt=""><span class="chip-n">Aembit</span><span class="tag raised">$45M</span></a>
+        <a class="chip" href="https://vouched.id" target="_blank" rel="noopener" data-blurb="Identity verification API optimized for AI-era onboarding and liveness."><img src="https://www.google.com/s2/favicons?domain=vouched.id&sz=64" alt=""><span class="chip-n">Vouched</span><span class="tag raised">$22M</span></a>
+        <a class="chip" href="https://trulioo.com" target="_blank" rel="noopener" data-blurb="Global KYC / KYB provider adapting its rails to know-your-agent flows."><img src="https://www.google.com/s2/favicons?domain=trulioo.com&sz=64" alt=""><span class="chip-n">Trulioo</span></a>
+        <a class="chip" href="https://prove.com" target="_blank" rel="noopener" data-blurb="Phone-based identity and passive authentication for agent sessions."><img src="https://www.google.com/s2/favicons?domain=prove.com&sz=64" alt=""><span class="chip-n">Prove</span></a>
       </div>
     </div>
 
@@ -203,78 +227,78 @@
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Agent Frameworks & Runtime</span><span class="cat-note">largest category · most crowded</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://langchain.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangChain<span class="star">★</span></span><span class="tag raised">$260M</span></a>
-        <a class="chip feat" href="https://crewai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=crewai.com&sz=64" alt=""><span class="chip-n">CrewAI<span class="star">★</span></span><span class="tag raised">$24.5M</span></a>
-        <a class="chip feat" href="https://cloudflare.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt=""><span class="chip-n">Cloudflare Agents<span class="star">★</span></span></a>
-        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI SDK</span></a>
-        <a class="chip" href="https://e2b.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=e2b.dev&sz=64" alt=""><span class="chip-n">E2B</span><span class="tag raised">$32M</span></a>
-        <a class="chip" href="https://openserv.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openserv.ai&sz=64" alt=""><span class="chip-n">OpenServ</span></a>
-        <a class="chip" href="https://sendai.fun" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=sendai.fun&sz=64" alt=""><span class="chip-n">SendAI</span></a>
-        <a class="chip" href="https://daydreams.systems" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=daydreams.systems&sz=64" alt=""><span class="chip-n">Daydreams</span></a>
+        <a class="chip feat" href="https://langchain.com" target="_blank" rel="noopener" data-blurb="Most-used open-source framework for building LLM agents and chains."><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangChain<span class="star">★</span></span><span class="tag raised">$260M</span></a>
+        <a class="chip feat" href="https://crewai.com" target="_blank" rel="noopener" data-blurb="Multi-agent orchestration framework organized around role-based agent teams."><img src="https://www.google.com/s2/favicons?domain=crewai.com&sz=64" alt=""><span class="chip-n">CrewAI<span class="star">★</span></span><span class="tag raised">$24.5M</span></a>
+        <a class="chip feat" href="https://cloudflare.com" target="_blank" rel="noopener" data-blurb="Durable Objects plus Workers — stateful agents running at the edge."><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt=""><span class="chip-n">Cloudflare Agents<span class="star">★</span></span></a>
+        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener" data-blurb="TypeScript SDK for building chat, agent and tool-use apps across any model."><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI SDK</span></a>
+        <a class="chip" href="https://e2b.dev" target="_blank" rel="noopener" data-blurb="Secure cloud sandboxes for running agent-generated code safely."><img src="https://www.google.com/s2/favicons?domain=e2b.dev&sz=64" alt=""><span class="chip-n">E2B</span><span class="tag raised">$32M</span></a>
+        <a class="chip" href="https://openserv.ai" target="_blank" rel="noopener" data-blurb="Multi-agent platform for shipping vertical agent products end-to-end."><img src="https://www.google.com/s2/favicons?domain=openserv.ai&sz=64" alt=""><span class="chip-n">OpenServ</span></a>
+        <a class="chip" href="https://sendai.fun" target="_blank" rel="noopener" data-blurb="Crypto-native agent kit for Solana — pay, trade and execute on-chain."><img src="https://www.google.com/s2/favicons?domain=sendai.fun&sz=64" alt=""><span class="chip-n">SendAI</span></a>
+        <a class="chip" href="https://daydreams.systems" target="_blank" rel="noopener" data-blurb="Generative agent framework focused on memory and long-horizon autonomy."><img src="https://www.google.com/s2/favicons?domain=daydreams.systems&sz=64" alt=""><span class="chip-n">Daydreams</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Agent Networks</span><span class="cat-note">agents hiring agents</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://fetch.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=fetch.ai&sz=64" alt=""><span class="chip-n">Fetch.ai<span class="star">★</span></span><span class="tag raised">$61M+</span></a>
-        <a class="chip feat" href="https://virtuals.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=virtuals.io&sz=64" alt=""><span class="chip-n">Virtuals<span class="star">★</span></span></a>
-        <a class="chip" href="https://bittensor.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bittensor.com&sz=64" alt=""><span class="chip-n">Bittensor</span></a>
-        <a class="chip" href="https://questflow.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=questflow.ai&sz=64" alt=""><span class="chip-n">Questflow</span><span class="tag raised">$6.5M</span></a>
-        <a class="chip" href="https://heurist.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=heurist.ai&sz=64" alt=""><span class="chip-n">Heurist</span></a>
-        <a class="chip" href="https://olas.network" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=olas.network&sz=64" alt=""><span class="chip-n">Olas</span></a>
+        <a class="chip feat" href="https://fetch.ai" target="_blank" rel="noopener" data-blurb="Decentralized agent marketplace — ASI alliance with Ocean and SingularityNET."><img src="https://www.google.com/s2/favicons?domain=fetch.ai&sz=64" alt=""><span class="chip-n">Fetch.ai<span class="star">★</span></span><span class="tag raised">$61M+</span></a>
+        <a class="chip feat" href="https://virtuals.io" target="_blank" rel="noopener" data-blurb="Tokenized AI agents on Base with co-ownership and revenue share."><img src="https://www.google.com/s2/favicons?domain=virtuals.io&sz=64" alt=""><span class="chip-n">Virtuals<span class="star">★</span></span></a>
+        <a class="chip" href="https://bittensor.com" target="_blank" rel="noopener" data-blurb="Decentralized network of specialized AI subnets with token incentives."><img src="https://www.google.com/s2/favicons?domain=bittensor.com&sz=64" alt=""><span class="chip-n">Bittensor</span></a>
+        <a class="chip" href="https://questflow.ai" target="_blank" rel="noopener" data-blurb="Multi-agent orchestration marketplace for enterprise workflow automation."><img src="https://www.google.com/s2/favicons?domain=questflow.ai&sz=64" alt=""><span class="chip-n">Questflow</span><span class="tag raised">$6.5M</span></a>
+        <a class="chip" href="https://heurist.ai" target="_blank" rel="noopener" data-blurb="Decentralized serverless inference for open-source models and agent apps."><img src="https://www.google.com/s2/favicons?domain=heurist.ai&sz=64" alt=""><span class="chip-n">Heurist</span></a>
+        <a class="chip" href="https://olas.network" target="_blank" rel="noopener" data-blurb="Autonomous agent economy — staked service agents with on-chain reputation."><img src="https://www.google.com/s2/favicons?domain=olas.network&sz=64" alt=""><span class="chip-n">Olas</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Payment Infrastructure</span><span class="cat-note">how agents hold & move money</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://paid.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paid.ai&sz=64" alt=""><span class="chip-n">Paid<span class="star">★</span></span><span class="tag raised">$33M Lightspeed</span></a>
-        <a class="chip feat" href="https://basistheory.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=basistheory.com&sz=64" alt=""><span class="chip-n">Basis Theory<span class="star">★</span></span><span class="tag raised">$33M</span></a>
-        <a class="chip feat" href="https://circuitandchisel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=circuitandchisel.com&sz=64" alt=""><span class="chip-n">Circuit & Chisel</span><span class="tag raised">$19.2M</span></a>
-        <a class="chip" href="https://catenalabs.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=catenalabs.com&sz=64" alt=""><span class="chip-n">Catena Labs</span><span class="tag raised">$18M a16z</span></a>
-        <a class="chip" href="https://sapiom.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=sapiom.ai&sz=64" alt=""><span class="chip-n">Sapiom</span><span class="tag raised">$15.75M Accel</span></a>
-        <a class="chip" href="https://paymanai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paymanai.com&sz=64" alt=""><span class="chip-n">Payman AI</span><span class="tag raised">$13M</span></a>
-        <a class="chip" href="https://natural.co" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=natural.co&sz=64" alt=""><span class="chip-n">Natural</span><span class="tag raised">$9.8M</span></a>
-        <a class="chip" href="https://skyfire.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=skyfire.xyz&sz=64" alt=""><span class="chip-n">Skyfire</span><span class="tag raised">$9.5M</span></a>
-        <a class="chip" href="https://crossmint.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=crossmint.com&sz=64" alt=""><span class="chip-n">Crossmint</span></a>
-        <a class="chip" href="https://bvnk.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bvnk.com&sz=64" alt=""><span class="chip-n">BVNK</span><span class="tag acq">Acq. $1.8B</span></a>
+        <a class="chip feat" href="https://paid.ai" target="_blank" rel="noopener" data-blurb="Usage-based billing and monetization layer purpose-built for AI agents."><img src="https://www.google.com/s2/favicons?domain=paid.ai&sz=64" alt=""><span class="chip-n">Paid<span class="star">★</span></span><span class="tag raised">$33M Lightspeed</span></a>
+        <a class="chip feat" href="https://basistheory.com" target="_blank" rel="noopener" data-blurb="Tokenization vault letting agents transact with card credentials safely."><img src="https://www.google.com/s2/favicons?domain=basistheory.com&sz=64" alt=""><span class="chip-n">Basis Theory<span class="star">★</span></span><span class="tag raised">$33M</span></a>
+        <a class="chip feat" href="https://circuitandchisel.com" target="_blank" rel="noopener" data-blurb="Programmable stablecoin payment infra built for autonomous agent flows."><img src="https://www.google.com/s2/favicons?domain=circuitandchisel.com&sz=64" alt=""><span class="chip-n">Circuit & Chisel</span><span class="tag raised">$19.2M</span></a>
+        <a class="chip" href="https://catenalabs.com" target="_blank" rel="noopener" data-blurb="Bank for AI agents — accounts, cards and compliance. a16z-led $18M."><img src="https://www.google.com/s2/favicons?domain=catenalabs.com&sz=64" alt=""><span class="chip-n">Catena Labs</span><span class="tag raised">$18M a16z</span></a>
+        <a class="chip" href="https://sapiom.ai" target="_blank" rel="noopener" data-blurb="Agent payments and treasury management with programmable spending controls."><img src="https://www.google.com/s2/favicons?domain=sapiom.ai&sz=64" alt=""><span class="chip-n">Sapiom</span><span class="tag raised">$15.75M Accel</span></a>
+        <a class="chip" href="https://paymanai.com" target="_blank" rel="noopener" data-blurb="Human-in-the-loop approvals layered on agent-initiated financial transactions."><img src="https://www.google.com/s2/favicons?domain=paymanai.com&sz=64" alt=""><span class="chip-n">Payman AI</span><span class="tag raised">$13M</span></a>
+        <a class="chip" href="https://natural.co" target="_blank" rel="noopener" data-blurb="Agent-native payment rails and merchant acceptance for AI commerce."><img src="https://www.google.com/s2/favicons?domain=natural.co&sz=64" alt=""><span class="chip-n">Natural</span><span class="tag raised">$9.8M</span></a>
+        <a class="chip" href="https://skyfire.xyz" target="_blank" rel="noopener" data-blurb="KYA-enabled payment network letting agents pay other agents and APIs."><img src="https://www.google.com/s2/favicons?domain=skyfire.xyz&sz=64" alt=""><span class="chip-n">Skyfire</span><span class="tag raised">$9.5M</span></a>
+        <a class="chip" href="https://crossmint.com" target="_blank" rel="noopener" data-blurb="Stablecoin checkout, wallets and commerce APIs for agents."><img src="https://www.google.com/s2/favicons?domain=crossmint.com&sz=64" alt=""><span class="chip-n">Crossmint</span></a>
+        <a class="chip" href="https://bvnk.com" target="_blank" rel="noopener" data-blurb="Stablecoin payments infrastructure. Acquired by Mastercard for $1.8B."><img src="https://www.google.com/s2/favicons?domain=bvnk.com&sz=64" alt=""><span class="chip-n">BVNK</span><span class="tag acq">Acq. $1.8B</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Wallets & Key Management</span><span class="cat-note">embedded custody + session keys</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://coinbase.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=coinbase.com&sz=64" alt=""><span class="chip-n">Coinbase Wallet<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://privy.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=privy.io&sz=64" alt=""><span class="chip-n">Privy<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://fireblocks.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=fireblocks.com&sz=64" alt=""><span class="chip-n">Fireblocks<span class="star">★</span></span></a>
-        <a class="chip" href="https://dynamic.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=dynamic.xyz&sz=64" alt=""><span class="chip-n">Dynamic</span></a>
-        <a class="chip" href="https://phantom.app" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=phantom.app&sz=64" alt=""><span class="chip-n">Phantom</span></a>
-        <a class="chip" href="https://turnkey.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=turnkey.com&sz=64" alt=""><span class="chip-n">Turnkey</span></a>
-        <a class="chip" href="https://nekuda.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=nekuda.com&sz=64" alt=""><span class="chip-n">Nekuda</span><span class="tag raised">$5M Visa</span></a>
+        <a class="chip feat" href="https://coinbase.com" target="_blank" rel="noopener" data-blurb="Smart wallets with passkeys and gasless transactions on Base."><img src="https://www.google.com/s2/favicons?domain=coinbase.com&sz=64" alt=""><span class="chip-n">Coinbase Wallet<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://privy.io" target="_blank" rel="noopener" data-blurb="Embedded wallets and auth — the go-to custody stack for agent apps."><img src="https://www.google.com/s2/favicons?domain=privy.io&sz=64" alt=""><span class="chip-n">Privy<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://fireblocks.com" target="_blank" rel="noopener" data-blurb="Institutional MPC custody with a policy engine for machine-driven flows."><img src="https://www.google.com/s2/favicons?domain=fireblocks.com&sz=64" alt=""><span class="chip-n">Fireblocks<span class="star">★</span></span></a>
+        <a class="chip" href="https://dynamic.xyz" target="_blank" rel="noopener" data-blurb="Multi-chain embedded wallets and auth for apps and agents."><img src="https://www.google.com/s2/favicons?domain=dynamic.xyz&sz=64" alt=""><span class="chip-n">Dynamic</span></a>
+        <a class="chip" href="https://phantom.app" target="_blank" rel="noopener" data-blurb="Leading Solana wallet — session keys enable autonomous agent signing."><img src="https://www.google.com/s2/favicons?domain=phantom.app&sz=64" alt=""><span class="chip-n">Phantom</span></a>
+        <a class="chip" href="https://turnkey.com" target="_blank" rel="noopener" data-blurb="Secure wallet infrastructure with policy-based signing designed for agents."><img src="https://www.google.com/s2/favicons?domain=turnkey.com&sz=64" alt=""><span class="chip-n">Turnkey</span></a>
+        <a class="chip" href="https://nekuda.com" target="_blank" rel="noopener" data-blurb="Visa-backed agent wallet bridging card rails and stablecoins."><img src="https://www.google.com/s2/favicons?domain=nekuda.com&sz=64" alt=""><span class="chip-n">Nekuda</span><span class="tag raised">$5M Visa</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Settlement & Rails</span><span class="cat-note">latency · cost · composability</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://base.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=base.org&sz=64" alt=""><span class="chip-n">Base<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://solana.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=solana.com&sz=64" alt=""><span class="chip-n">Solana<span class="star">★</span></span></a>
-        <a class="chip feat" href="https://tempo.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tempo.xyz&sz=64" alt=""><span class="chip-n">Tempo<span class="star">★</span></span></a>
-        <a class="chip" href="https://gokite.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=gokite.ai&sz=64" alt=""><span class="chip-n">Kite</span><span class="tag raised">$33M</span></a>
-        <a class="chip" href="https://polygon.technology" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=polygon.technology&sz=64" alt=""><span class="chip-n">Polygon</span></a>
-        <a class="chip" href="https://arbitrum.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=arbitrum.io&sz=64" alt=""><span class="chip-n">Arbitrum</span></a>
+        <a class="chip feat" href="https://base.org" target="_blank" rel="noopener" data-blurb="Coinbase's L2 — the default settlement layer for Western agent commerce."><img src="https://www.google.com/s2/favicons?domain=base.org&sz=64" alt=""><span class="chip-n">Base<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://solana.com" target="_blank" rel="noopener" data-blurb="High-throughput L1 with the strongest payments and agent ecosystem today."><img src="https://www.google.com/s2/favicons?domain=solana.com&sz=64" alt=""><span class="chip-n">Solana<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://tempo.xyz" target="_blank" rel="noopener" data-blurb="Stablecoin-optimized chain built explicitly for payments workloads."><img src="https://www.google.com/s2/favicons?domain=tempo.xyz&sz=64" alt=""><span class="chip-n">Tempo<span class="star">★</span></span></a>
+        <a class="chip" href="https://gokite.ai" target="_blank" rel="noopener" data-blurb="Agent-native blockchain with identity and payment primitives built in."><img src="https://www.google.com/s2/favicons?domain=gokite.ai&sz=64" alt=""><span class="chip-n">Kite</span><span class="tag raised">$33M</span></a>
+        <a class="chip" href="https://polygon.technology" target="_blank" rel="noopener" data-blurb="EVM L2 family with broad DeFi and payment integrations."><img src="https://www.google.com/s2/favicons?domain=polygon.technology&sz=64" alt=""><span class="chip-n">Polygon</span></a>
+        <a class="chip" href="https://arbitrum.io" target="_blank" rel="noopener" data-blurb="Leading EVM L2 by TVL — used for agent DeFi and settlement."><img src="https://www.google.com/s2/favicons?domain=arbitrum.io&sz=64" alt=""><span class="chip-n">Arbitrum</span></a>
       </div>
     </div>
 
     <div class="cat">
       <div class="cat-hdr"><span class="cat-name">Observability & Eval</span><span class="cat-note">what did the agent actually do?</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://langfuse.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langfuse.com&sz=64" alt=""><span class="chip-n">Langfuse<span class="star">★</span></span></a>
-        <a class="chip" href="https://smith.langchain.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangSmith</span></a>
-        <a class="chip" href="https://braintrust.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=braintrust.dev&sz=64" alt=""><span class="chip-n">Braintrust</span></a>
-        <a class="chip" href="https://arize.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=arize.com&sz=64" alt=""><span class="chip-n">Arize</span></a>
-        <a class="chip" href="https://helicone.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=helicone.ai&sz=64" alt=""><span class="chip-n">Helicone</span></a>
+        <a class="chip feat" href="https://langfuse.com" target="_blank" rel="noopener" data-blurb="Open-source LLM observability, tracing and evaluation platform."><img src="https://www.google.com/s2/favicons?domain=langfuse.com&sz=64" alt=""><span class="chip-n">Langfuse<span class="star">★</span></span></a>
+        <a class="chip" href="https://smith.langchain.com" target="_blank" rel="noopener" data-blurb="LangChain's hosted tracing and evaluation for production agents."><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangSmith</span></a>
+        <a class="chip" href="https://braintrust.dev" target="_blank" rel="noopener" data-blurb="End-to-end eval and experimentation platform for LLM apps and agents."><img src="https://www.google.com/s2/favicons?domain=braintrust.dev&sz=64" alt=""><span class="chip-n">Braintrust</span></a>
+        <a class="chip" href="https://arize.com" target="_blank" rel="noopener" data-blurb="ML + LLM observability with strong drift and agent-trace analytics."><img src="https://www.google.com/s2/favicons?domain=arize.com&sz=64" alt=""><span class="chip-n">Arize</span></a>
+        <a class="chip" href="https://helicone.ai" target="_blank" rel="noopener" data-blurb="Drop-in LLM logging, cost tracking and prompt management."><img src="https://www.google.com/s2/favicons?domain=helicone.ai&sz=64" alt=""><span class="chip-n">Helicone</span></a>
       </div>
     </div>
 
@@ -294,31 +318,31 @@
     <div class="cat" style="margin:0">
       <div class="cat-hdr"><span class="cat-name">Foundation Models</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://anthropic.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Anthropic<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://anthropic.com" target="_blank" rel="noopener" data-blurb="Maker of Claude — leading tool-use and safety-focused frontier lab."><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Anthropic<span class="star">★</span></span></a>
         <a class="chip feat" href="https://openai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""><span class="chip-n">OpenAI<span class="star">★</span></span></a>
-        <a class="chip" href="https://deepmind.google" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">Google</span></a>
-        <a class="chip" href="https://meta.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" alt=""><span class="chip-n">Meta</span></a>
-        <a class="chip" href="https://x.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">xAI</span></a>
-        <a class="chip" href="https://mistral.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" alt=""><span class="chip-n">Mistral</span></a>
+        <a class="chip" href="https://deepmind.google" target="_blank" rel="noopener" data-blurb="Gemini models, the A2A protocol and the Vertex AI platform."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">Google</span></a>
+        <a class="chip" href="https://meta.com" target="_blank" rel="noopener" data-blurb="Llama open-weight models powering agents that need on-prem or open stacks."><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" alt=""><span class="chip-n">Meta</span></a>
+        <a class="chip" href="https://x.ai" target="_blank" rel="noopener" data-blurb="Grok models with real-time X signal and long context."><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">xAI</span></a>
+        <a class="chip" href="https://mistral.ai" target="_blank" rel="noopener" data-blurb="European open-weight frontier lab — strong for on-prem agent deployments."><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" alt=""><span class="chip-n">Mistral</span></a>
       </div>
     </div>
 
     <div class="cat" style="margin:0">
       <div class="cat-hdr"><span class="cat-name">Stablecoins</span><span class="cat-note">99% of agent payments in USDC</span></div>
       <div class="chips">
-        <a class="chip feat" href="https://circle.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=circle.com&sz=64" alt=""><span class="chip-n">USDC · Circle<span class="star">★</span></span></a>
-        <a class="chip" href="https://tether.to" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tether.to&sz=64" alt=""><span class="chip-n">USDT · Tether</span></a>
-        <a class="chip" href="https://paypal.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paypal.com&sz=64" alt=""><span class="chip-n">PYUSD · PayPal</span></a>
+        <a class="chip feat" href="https://circle.com" target="_blank" rel="noopener" data-blurb="Circle's regulated stablecoin — ~99% of agent-to-agent payments today."><img src="https://www.google.com/s2/favicons?domain=circle.com&sz=64" alt=""><span class="chip-n">USDC · Circle<span class="star">★</span></span></a>
+        <a class="chip" href="https://tether.to" target="_blank" rel="noopener" data-blurb="Tether's stablecoin — largest by volume and dominant outside the US."><img src="https://www.google.com/s2/favicons?domain=tether.to&sz=64" alt=""><span class="chip-n">USDT · Tether</span></a>
+        <a class="chip" href="https://paypal.com" target="_blank" rel="noopener" data-blurb="PayPal's stablecoin bridging card and crypto merchant acceptance."><img src="https://www.google.com/s2/favicons?domain=paypal.com&sz=64" alt=""><span class="chip-n">PYUSD · PayPal</span></a>
       </div>
     </div>
 
     <div class="cat" style="margin:0">
       <div class="cat-hdr"><span class="cat-name">Compute & Gateways</span></div>
       <div class="chips">
-        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI Gateway</span></a>
-        <a class="chip" href="https://openrouter.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openrouter.ai&sz=64" alt=""><span class="chip-n">OpenRouter</span></a>
-        <a class="chip" href="https://aws.amazon.com/bedrock" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" alt=""><span class="chip-n">Bedrock</span></a>
-        <a class="chip" href="https://cloud.google.com/vertex-ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64" alt=""><span class="chip-n">Vertex AI</span></a>
+        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener" data-blurb="Unified API for model routing, provider failover and cost tracking."><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI Gateway</span></a>
+        <a class="chip" href="https://openrouter.ai" target="_blank" rel="noopener" data-blurb="Marketplace and router for hundreds of hosted LLMs behind one API."><img src="https://www.google.com/s2/favicons?domain=openrouter.ai&sz=64" alt=""><span class="chip-n">OpenRouter</span></a>
+        <a class="chip" href="https://aws.amazon.com/bedrock" target="_blank" rel="noopener" data-blurb="AWS-managed foundation model service with enterprise compliance."><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" alt=""><span class="chip-n">Bedrock</span></a>
+        <a class="chip" href="https://cloud.google.com/vertex-ai" target="_blank" rel="noopener" data-blurb="Google Cloud's managed ML platform and model garden."><img src="https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64" alt=""><span class="chip-n">Vertex AI</span></a>
       </div>
     </div>
 
