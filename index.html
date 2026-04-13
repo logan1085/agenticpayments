@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Commerce Market Map · April 2026</title>
+<meta name="description" content="Market map of the agentic commerce ecosystem — the human-in-the-loop B2C stack and the autonomous agent B2B stack, plus shared infrastructure.">
+<meta property="og:title" content="Agentic Commerce Market Map">
+<meta property="og:description" content="Two markets: human-in-the-loop (B2C) and autonomous agents (B2B). Discovery, facilitators, payments, identity, wallets, settlement.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#0a0a0a; --mute:#6b7280; --line:#e5e7eb; --soft:#f3f4f6;
+    --m1:#16a34a; --m1-bg:#f0fdf4; --m1-ln:#bbf7d0;
+    --m2:#7c3aed; --m2-bg:#faf5ff; --m2-ln:#e9d5ff;
+    --sh:#4338ca; --sh-bg:#eef2ff; --sh-ln:#c7d2fe;
+  }
+  html,body{background:#fafafa}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;font-size:12px;line-height:1.45}
+  .page{max-width:1320px;margin:0 auto;padding:28px 22px 36px}
+
+  .hdr{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:10px}
+  h1{font-size:26px;font-weight:900;letter-spacing:-.9px;line-height:1.05}
+  h1 .tag{display:inline-block;margin-left:8px;vertical-align:middle;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--ink);color:#fff;letter-spacing:.3px;text-transform:uppercase}
+  .meta{font-size:10px;color:var(--mute);font-weight:500;display:flex;gap:14px}
+  .thesis{font-size:12px;color:#4b5563;line-height:1.55;margin:6px 0 14px;max-width:980px}
+  .thesis strong{color:#111}
+
+  .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:10px;color:#6b7280;margin-bottom:14px;padding:8px 12px;border:1px dashed #e5e7eb;border-radius:8px;background:#fff}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend .dot{width:8px;height:8px;border-radius:50%}
+  .legend .star{color:#f59e0b;font-weight:700}
+  .legend .mini{font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px}
+  .legend .mini.raised{background:#dcfce7;color:#16a34a}
+  .legend .mini.acq{background:#fef3c7;color:#d97706}
+  .legend .mini.proto{background:#ede9fe;color:#7c3aed}
+
+  .markets{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  @media(max-width:900px){.markets{grid-template-columns:1fr}}
+  .market{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .market-hdr{padding:12px 16px 10px;display:flex;align-items:center;gap:10px}
+  .market-hdr h2{font-size:15px;font-weight:800;letter-spacing:-.3px}
+  .market-hdr .badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.3px}
+  .market-hdr .flow{font-size:9px;color:#9ca3af;margin-left:auto;font-weight:500;font-family:ui-monospace,monospace}
+  .m1 .market-hdr{background:var(--m1-bg);border-bottom:1.5px solid var(--m1-ln)}
+  .m1 .market-hdr .badge{background:var(--m1)}
+  .m2 .market-hdr{background:var(--m2-bg);border-bottom:1.5px solid var(--m2-ln)}
+  .m2 .market-hdr .badge{background:var(--m2)}
+  .market-body{padding:10px}
+
+  .cat{margin-bottom:8px;border:1px solid #f1f1f1;border-radius:9px;overflow:hidden;background:#fff}
+  .cat:last-child{margin-bottom:0}
+  .cat-hdr{display:flex;align-items:center;gap:6px;padding:7px 11px;background:#fafafa;border-bottom:1px solid #f1f1f1}
+  .cat-name{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#374151}
+  .cat-note{font-size:9px;color:#9ca3af;margin-left:auto;font-style:italic}
+
+  .chips{display:flex;flex-wrap:wrap;gap:5px;padding:9px 9px 7px}
+  .chip{display:inline-flex;align-items:center;gap:5px;padding:4px 9px 4px 5px;border-radius:7px;border:1px solid #ececec;text-decoration:none;color:inherit;transition:all .14s ease;background:#fff;white-space:nowrap}
+  .chip:hover{border-color:#c7c7c7;background:#fafafa;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.05)}
+  .chip:focus-visible{outline:2px solid #6366f1;outline-offset:1px}
+  .chip img{width:16px;height:16px;border-radius:3px;object-fit:contain;background:#f3f4f6;flex-shrink:0}
+  .chip-n{font-size:10px;font-weight:600}
+  .chip .star{color:#f59e0b;font-size:9px;margin-left:2px}
+  .chip .tag{font-size:7.5px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:3px;letter-spacing:.2px}
+  .chip .tag.proto{background:#ede9fe;color:#7c3aed}
+  .chip .tag.acq{background:#fef3c7;color:#d97706}
+  .chip .tag.raised{background:#dcfce7;color:#16a34a}
+  .chip.feat{border-color:#d4d4d4;background:#fafafa;padding:5px 10px 5px 6px}
+  .chip.feat .chip-n{font-weight:800}
+  .chip.feat img{width:18px;height:18px}
+
+  .shared{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .shared-hdr{padding:10px 16px;background:var(--sh-bg);border-bottom:1.5px solid var(--sh-ln);display:flex;align-items:center;gap:10px}
+  .shared-hdr h2{font-size:14px;font-weight:800;letter-spacing:-.2px;color:var(--sh)}
+  .shared-hdr .flow{font-size:9px;color:#818cf8;margin-left:auto;font-weight:500;font-family:ui-monospace,monospace}
+  .shared-body{padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  @media(max-width:900px){.shared-body{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.shared-body{grid-template-columns:1fr}}
+
+  .footer{margin-top:20px;padding-top:12px;border-top:1px solid #efefef;font-size:9px;color:#9ca3af;text-align:center;line-height:1.6}
+  .footer a{color:#6b7280;text-decoration:none;border-bottom:1px dotted #d1d5db}
+  .footer a:hover{color:#111}
+
+  @media print{
+    html,body{background:#fff}
+    body{font-size:10px}
+    .page{padding:14px;max-width:100%}
+    .chip:hover{transform:none;box-shadow:none}
+    .market,.shared{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hdr">
+  <div>
+    <h1>Agentic Commerce Market Map <span class="tag">April 2026</span></h1>
+  </div>
+  <div class="meta"><span>v2 · Based on Artemis Landscape</span><span>Curated by Logan Horowitz</span></div>
+</div>
+
+<p class="thesis"><strong>Two distinct markets are forming.</strong> A <strong>human-in-the-loop market</strong> (arriving now, B2C first) that improves discovery and checkout with a user still pressing the final button, and an <strong>autonomous agent market</strong> (being built, B2B first) where agents decide, pay, and execute independently on net-new infrastructure. They share foundation models and stablecoins but diverge in rails, identity, and UX.</p>
+
+<div class="legend">
+  <span><span class="star">★</span> Featured leader</span>
+  <span><span class="mini raised">$XXM</span> Disclosed funding</span>
+  <span><span class="mini acq">Acq.</span> Recent acquisition</span>
+  <span><span class="mini proto">Proto</span> Open protocol</span>
+  <span><span class="dot" style="background:var(--m1)"></span> Human-in-loop (B2C)</span>
+  <span><span class="dot" style="background:var(--m2)"></span> Autonomous (B2B)</span>
+  <span><span class="dot" style="background:var(--sh)"></span> Shared infra</span>
+</div>
+
+<div class="markets">
+
+<!-- ════════ MARKET 1 ════════ -->
+<div class="market m1">
+  <div class="market-hdr">
+    <h2>Human in the Loop</h2>
+    <span class="badge">B2C First</span>
+    <span class="flow">prompt → search → rank → approve → pay</span>
+  </div>
+  <div class="market-body">
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">User Interfaces</span><span class="cat-note">where the shopper starts</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://chatgpt.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""><span class="chip-n">ChatGPT<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://claude.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Claude<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://gemini.google.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" alt=""><span class="chip-n">Gemini<span class="star">★</span></span></a>
+        <a class="chip" href="https://perplexity.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" alt=""><span class="chip-n">Perplexity</span></a>
+        <a class="chip" href="https://x.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">Grok</span></a>
+        <a class="chip" href="https://copilot.microsoft.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt=""><span class="chip-n">Copilot</span></a>
+        <a class="chip" href="https://telegram.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=64" alt=""><span class="chip-n">Telegram</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Discovery & GEO</span><span class="cat-note">SEO → generative engine optimization</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://tryprofound.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tryprofound.com&sz=64" alt=""><span class="chip-n">Profound<span class="star">★</span></span><span class="tag raised">$134M Sequoia</span></a>
+        <a class="chip feat" href="https://airops.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=airops.com&sz=64" alt=""><span class="chip-n">AirOps<span class="star">★</span></span><span class="tag raised">$60M Greylock</span></a>
+        <a class="chip" href="https://brandlight.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=brandlight.ai&sz=64" alt=""><span class="chip-n">Brandlight</span><span class="tag raised">$36M</span></a>
+        <a class="chip" href="https://phia.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=phia.com&sz=64" alt=""><span class="chip-n">Phia</span><span class="tag raised">$35M Khosla</span></a>
+        <a class="chip" href="https://evertune.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=evertune.ai&sz=64" alt=""><span class="chip-n">Evertune</span><span class="tag raised">$19M</span></a>
+        <a class="chip" href="https://trychannel3.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=trychannel3.com&sz=64" alt=""><span class="chip-n">Channel3</span><span class="tag raised">$6M</span></a>
+        <a class="chip" href="https://goodie.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=goodie.ai&sz=64" alt=""><span class="chip-n">Goodie</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Facilitators</span><span class="cat-note">bridge intent → merchant execution</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://stripe.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">Stripe<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://shopify.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt=""><span class="chip-n">Shopify<span class="star">★</span></span></a>
+        <a class="chip" href="https://didero.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=didero.com&sz=64" alt=""><span class="chip-n">Didero</span><span class="tag raised">$37M</span></a>
+        <a class="chip" href="https://spangle.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=spangle.ai&sz=64" alt=""><span class="chip-n">Spangle</span><span class="tag raised">$21M</span></a>
+        <a class="chip" href="https://rye.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=rye.com&sz=64" alt=""><span class="chip-n">Rye</span><span class="tag raised">$14M a16z</span></a>
+        <a class="chip" href="https://lemrock.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=lemrock.com&sz=64" alt=""><span class="chip-n">Lemrock</span><span class="tag raised">€6M</span></a>
+        <a class="chip" href="https://firmly.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=firmly.ai&sz=64" alt=""><span class="chip-n">Firmly</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Protocols & Standards</span><span class="cat-note">how LLMs talk to commerce</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://agenticcommerce.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">ACP · Stripe × OpenAI<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://modelcontextprotocol.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=modelcontextprotocol.io&sz=64" alt=""><span class="chip-n">MCP</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://a2aproject.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">A2A</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://schema.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=schema.org&sz=64" alt=""><span class="chip-n">Schema.org</span><span class="tag proto">Proto</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Identity & Trust</span><span class="cat-note">KYC → KYA (know your agent)</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://visa.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=visa.com&sz=64" alt=""><span class="chip-n">Visa<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://mastercard.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mastercard.com&sz=64" alt=""><span class="chip-n">Mastercard<span class="star">★</span></span><span class="tag acq">Acq. BVNK $1.8B</span></a>
+        <a class="chip" href="https://aembit.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aembit.io&sz=64" alt=""><span class="chip-n">Aembit</span><span class="tag raised">$45M</span></a>
+        <a class="chip" href="https://vouched.id" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vouched.id&sz=64" alt=""><span class="chip-n">Vouched</span><span class="tag raised">$22M</span></a>
+        <a class="chip" href="https://trulioo.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=trulioo.com&sz=64" alt=""><span class="chip-n">Trulioo</span></a>
+        <a class="chip" href="https://prove.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=prove.com&sz=64" alt=""><span class="chip-n">Prove</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════ MARKET 2 ════════ -->
+<div class="market m2">
+  <div class="market-hdr">
+    <h2>Autonomous Agents</h2>
+    <span class="badge">B2B First</span>
+    <span class="flow">policy → evaluate → permission → execute → learn</span>
+  </div>
+  <div class="market-body">
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Agent Frameworks & Runtime</span><span class="cat-note">largest category · most crowded</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://langchain.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangChain<span class="star">★</span></span><span class="tag raised">$260M</span></a>
+        <a class="chip feat" href="https://crewai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=crewai.com&sz=64" alt=""><span class="chip-n">CrewAI<span class="star">★</span></span><span class="tag raised">$24.5M</span></a>
+        <a class="chip feat" href="https://cloudflare.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt=""><span class="chip-n">Cloudflare Agents<span class="star">★</span></span></a>
+        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI SDK</span></a>
+        <a class="chip" href="https://e2b.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=e2b.dev&sz=64" alt=""><span class="chip-n">E2B</span><span class="tag raised">$32M</span></a>
+        <a class="chip" href="https://openserv.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openserv.ai&sz=64" alt=""><span class="chip-n">OpenServ</span></a>
+        <a class="chip" href="https://sendai.fun" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=sendai.fun&sz=64" alt=""><span class="chip-n">SendAI</span></a>
+        <a class="chip" href="https://daydreams.systems" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=daydreams.systems&sz=64" alt=""><span class="chip-n">Daydreams</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Agent Networks</span><span class="cat-note">agents hiring agents</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://fetch.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=fetch.ai&sz=64" alt=""><span class="chip-n">Fetch.ai<span class="star">★</span></span><span class="tag raised">$61M+</span></a>
+        <a class="chip feat" href="https://virtuals.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=virtuals.io&sz=64" alt=""><span class="chip-n">Virtuals<span class="star">★</span></span></a>
+        <a class="chip" href="https://bittensor.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bittensor.com&sz=64" alt=""><span class="chip-n">Bittensor</span></a>
+        <a class="chip" href="https://questflow.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=questflow.ai&sz=64" alt=""><span class="chip-n">Questflow</span><span class="tag raised">$6.5M</span></a>
+        <a class="chip" href="https://heurist.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=heurist.ai&sz=64" alt=""><span class="chip-n">Heurist</span></a>
+        <a class="chip" href="https://olas.network" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=olas.network&sz=64" alt=""><span class="chip-n">Olas</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Payment Infrastructure</span><span class="cat-note">how agents hold & move money</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://paid.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paid.ai&sz=64" alt=""><span class="chip-n">Paid<span class="star">★</span></span><span class="tag raised">$33M Lightspeed</span></a>
+        <a class="chip feat" href="https://basistheory.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=basistheory.com&sz=64" alt=""><span class="chip-n">Basis Theory<span class="star">★</span></span><span class="tag raised">$33M</span></a>
+        <a class="chip feat" href="https://circuitandchisel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=circuitandchisel.com&sz=64" alt=""><span class="chip-n">Circuit & Chisel</span><span class="tag raised">$19.2M</span></a>
+        <a class="chip" href="https://catenalabs.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=catenalabs.com&sz=64" alt=""><span class="chip-n">Catena Labs</span><span class="tag raised">$18M a16z</span></a>
+        <a class="chip" href="https://sapiom.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=sapiom.ai&sz=64" alt=""><span class="chip-n">Sapiom</span><span class="tag raised">$15.75M Accel</span></a>
+        <a class="chip" href="https://paymanai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paymanai.com&sz=64" alt=""><span class="chip-n">Payman AI</span><span class="tag raised">$13M</span></a>
+        <a class="chip" href="https://natural.co" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=natural.co&sz=64" alt=""><span class="chip-n">Natural</span><span class="tag raised">$9.8M</span></a>
+        <a class="chip" href="https://skyfire.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=skyfire.xyz&sz=64" alt=""><span class="chip-n">Skyfire</span><span class="tag raised">$9.5M</span></a>
+        <a class="chip" href="https://crossmint.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=crossmint.com&sz=64" alt=""><span class="chip-n">Crossmint</span></a>
+        <a class="chip" href="https://bvnk.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bvnk.com&sz=64" alt=""><span class="chip-n">BVNK</span><span class="tag acq">Acq. $1.8B</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Wallets & Key Management</span><span class="cat-note">embedded custody + session keys</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://coinbase.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=coinbase.com&sz=64" alt=""><span class="chip-n">Coinbase Wallet<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://privy.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=privy.io&sz=64" alt=""><span class="chip-n">Privy<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://fireblocks.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=fireblocks.com&sz=64" alt=""><span class="chip-n">Fireblocks<span class="star">★</span></span></a>
+        <a class="chip" href="https://dynamic.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=dynamic.xyz&sz=64" alt=""><span class="chip-n">Dynamic</span></a>
+        <a class="chip" href="https://phantom.app" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=phantom.app&sz=64" alt=""><span class="chip-n">Phantom</span></a>
+        <a class="chip" href="https://turnkey.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=turnkey.com&sz=64" alt=""><span class="chip-n">Turnkey</span></a>
+        <a class="chip" href="https://nekuda.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=nekuda.com&sz=64" alt=""><span class="chip-n">Nekuda</span><span class="tag raised">$5M Visa</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Settlement & Rails</span><span class="cat-note">latency · cost · composability</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://base.org" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=base.org&sz=64" alt=""><span class="chip-n">Base<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://solana.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=solana.com&sz=64" alt=""><span class="chip-n">Solana<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://tempo.xyz" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tempo.xyz&sz=64" alt=""><span class="chip-n">Tempo<span class="star">★</span></span></a>
+        <a class="chip" href="https://gokite.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=gokite.ai&sz=64" alt=""><span class="chip-n">Kite</span><span class="tag raised">$33M</span></a>
+        <a class="chip" href="https://polygon.technology" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=polygon.technology&sz=64" alt=""><span class="chip-n">Polygon</span></a>
+        <a class="chip" href="https://arbitrum.io" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=arbitrum.io&sz=64" alt=""><span class="chip-n">Arbitrum</span></a>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-hdr"><span class="cat-name">Observability & Eval</span><span class="cat-note">what did the agent actually do?</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://langfuse.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langfuse.com&sz=64" alt=""><span class="chip-n">Langfuse<span class="star">★</span></span></a>
+        <a class="chip" href="https://smith.langchain.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=langchain.com&sz=64" alt=""><span class="chip-n">LangSmith</span></a>
+        <a class="chip" href="https://braintrust.dev" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=braintrust.dev&sz=64" alt=""><span class="chip-n">Braintrust</span></a>
+        <a class="chip" href="https://arize.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=arize.com&sz=64" alt=""><span class="chip-n">Arize</span></a>
+        <a class="chip" href="https://helicone.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=helicone.ai&sz=64" alt=""><span class="chip-n">Helicone</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /markets -->
+
+<!-- ════════ SHARED ════════ -->
+<div class="shared">
+  <div class="shared-hdr">
+    <h2>Shared Infrastructure</h2>
+    <span class="flow">both markets depend on these</span>
+  </div>
+  <div class="shared-body">
+
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Foundation Models</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://anthropic.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""><span class="chip-n">Anthropic<span class="star">★</span></span></a>
+        <a class="chip feat" href="https://openai.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""><span class="chip-n">OpenAI<span class="star">★</span></span></a>
+        <a class="chip" href="https://deepmind.google" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">Google</span></a>
+        <a class="chip" href="https://meta.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" alt=""><span class="chip-n">Meta</span></a>
+        <a class="chip" href="https://x.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=x.ai&sz=64" alt=""><span class="chip-n">xAI</span></a>
+        <a class="chip" href="https://mistral.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&sz=64" alt=""><span class="chip-n">Mistral</span></a>
+      </div>
+    </div>
+
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Stablecoins</span><span class="cat-note">99% of agent payments in USDC</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://circle.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=circle.com&sz=64" alt=""><span class="chip-n">USDC · Circle<span class="star">★</span></span></a>
+        <a class="chip" href="https://tether.to" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=tether.to&sz=64" alt=""><span class="chip-n">USDT · Tether</span></a>
+        <a class="chip" href="https://paypal.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=paypal.com&sz=64" alt=""><span class="chip-n">PYUSD · PayPal</span></a>
+      </div>
+    </div>
+
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Compute & Gateways</span></div>
+      <div class="chips">
+        <a class="chip" href="https://vercel.com" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=vercel.com&sz=64" alt=""><span class="chip-n">Vercel AI Gateway</span></a>
+        <a class="chip" href="https://openrouter.ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=openrouter.ai&sz=64" alt=""><span class="chip-n">OpenRouter</span></a>
+        <a class="chip" href="https://aws.amazon.com/bedrock" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" alt=""><span class="chip-n">Bedrock</span></a>
+        <a class="chip" href="https://cloud.google.com/vertex-ai" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64" alt=""><span class="chip-n">Vertex AI</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Agentic Commerce Market Map · v2 · April 2026 · Based on the Artemis Agentic Commerce Landscape · Inclusion is editorial, not a ranking · <a href="https://github.com/logan1085/agenticpayments" target="_blank" rel="noopener">source on github</a>
+</div>
+
+</div>
+</body>
+</html>
