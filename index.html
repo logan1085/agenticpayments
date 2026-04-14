@@ -24,11 +24,24 @@
   .page{max-width:1320px;margin:0 auto;padding:28px 22px 36px}
 
   .hdr{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:10px}
-  h1{font-size:26px;font-weight:900;letter-spacing:-.9px;line-height:1.05}
+  h1{font-size:28px;font-weight:900;letter-spacing:-.95px;line-height:1.04}
   h1 .tag{display:inline-block;margin-left:8px;vertical-align:middle;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--ink);color:#fff;letter-spacing:.3px;text-transform:uppercase}
+  .sub{margin-top:4px;font-size:11px;color:#6b7280;font-weight:500;letter-spacing:.1px}
   .meta{font-size:10px;color:var(--mute);font-weight:500;display:flex;gap:14px}
-  .thesis{font-size:12px;color:#4b5563;line-height:1.55;margin:6px 0 14px;max-width:980px}
+  .thesis{font-size:12px;color:#4b5563;line-height:1.55;margin:10px 0 10px;max-width:980px}
   .thesis strong{color:#111}
+
+  .stats{display:flex;flex-wrap:wrap;gap:0;margin:12px 0 10px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .stats span{flex:1 1 auto;min-width:110px;padding:8px 14px;font-size:10px;color:#6b7280;font-weight:500;border-right:1px solid #f1f1f1;display:flex;align-items:baseline;gap:6px}
+  .stats span:last-child{border-right:0}
+  .stats b{font-size:14px;font-weight:900;color:#0a0a0a;letter-spacing:-.2px}
+
+  .moves{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin:0 0 14px;padding:0;border:1px dashed #e5e7eb;border-radius:8px;background:#fff;overflow:hidden}
+  .moves-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#6b7280;padding:8px 12px;background:#fafafa;border-right:1px dashed #e5e7eb;white-space:nowrap}
+  .moves-list{display:flex;flex-wrap:wrap;gap:0;flex:1}
+  .moves-list span{font-size:10px;color:#374151;font-weight:500;padding:8px 12px;border-right:1px dashed #f1f1f1;white-space:nowrap}
+  .moves-list span:last-child{border-right:0}
+  .moves-list span::before{content:'▲ ';color:#16a34a;font-size:8px;margin-right:2px;vertical-align:middle}
 
   .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:10px;color:#6b7280;margin-bottom:14px;padding:8px 12px;border:1px dashed #e5e7eb;border-radius:8px;background:#fff}
   .legend span{display:inline-flex;align-items:center;gap:5px}
@@ -65,11 +78,11 @@
   /* Tooltip blurbs */
   .chip[data-blurb]::after{
     content:attr(data-blurb);
-    position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
-    background:#0a0a0a;color:#fff;padding:7px 10px;border-radius:6px;
-    font-size:10px;font-weight:500;line-height:1.45;letter-spacing:0;
-    white-space:normal;width:max-content;max-width:240px;text-align:left;
-    box-shadow:0 8px 24px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.08);
+    position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);
+    background:#0a0a0a;color:#fff;padding:8px 11px;border-radius:7px;
+    font-size:10px;font-weight:500;line-height:1.5;letter-spacing:0;
+    white-space:normal;width:max-content;max-width:260px;text-align:left;
+    box-shadow:0 12px 32px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.10);
     opacity:0;pointer-events:none;z-index:30;
     transition:opacity .16s ease,transform .16s ease;
   }
@@ -101,9 +114,10 @@
   .shared-hdr{padding:10px 16px;background:var(--sh-bg);border-bottom:1.5px solid var(--sh-ln);display:flex;align-items:center;gap:10px;border-radius:10.5px 10.5px 0 0}
   .shared-hdr h2{font-size:14px;font-weight:800;letter-spacing:-.2px;color:var(--sh)}
   .shared-hdr .flow{font-size:9px;color:#818cf8;margin-left:auto;font-weight:500;font-family:ui-monospace,monospace}
-  .shared-body{padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-  @media(max-width:900px){.shared-body{grid-template-columns:1fr 1fr}}
-  @media(max-width:600px){.shared-body{grid-template-columns:1fr}}
+  .shared-body{padding:10px;display:flex;flex-direction:column;gap:10px}
+  .shared-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  @media(max-width:900px){.shared-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.shared-grid{grid-template-columns:1fr}}
 
   .footer{margin-top:20px;padding-top:12px;border-top:1px solid #efefef;font-size:9px;color:#9ca3af;text-align:center;line-height:1.6}
   .footer a{color:#6b7280;text-decoration:none;border-bottom:1px dotted #d1d5db}
@@ -124,11 +138,32 @@
 <div class="hdr">
   <div>
     <h1>Agentic Commerce Market Map <span class="tag">April 2026</span></h1>
+    <div class="sub">The companies and protocols building how agents will discover, decide, and pay.</div>
   </div>
-  <div class="meta"><span>v2 · Based on Artemis Landscape</span><span>Curated by Logan Horowitz</span></div>
+  <div class="meta"><span>v3 · Based on Artemis Landscape</span><span>Curated by Logan Horowitz</span></div>
 </div>
 
-<p class="thesis"><strong>Two distinct markets are forming.</strong> A <strong>human-in-the-loop market</strong> (arriving now, B2C first) that improves discovery and checkout with a user still pressing the final button, and an <strong>autonomous agent market</strong> (being built, B2B first) where agents decide, pay, and execute independently on net-new infrastructure. They share foundation models and stablecoins but diverge in rails, identity, and UX.</p>
+<p class="thesis"><strong>Two distinct markets are forming.</strong> A <strong>human-in-the-loop market</strong> (arriving now, B2C first) that improves discovery and checkout with a user still pressing the final button, and an <strong>autonomous agent market</strong> (being built, B2B first) where agents decide, pay, and execute independently on net-new infrastructure. They share foundation models, stablecoins, and a fast-hardening protocol layer — but diverge in rails, identity, and UX.</p>
+
+<div class="stats">
+  <span><b>94</b> entries</span>
+  <span><b>14</b> categories</span>
+  <span><b>$1B+</b> disclosed funding</span>
+  <span><b>8</b> live protocols</span>
+  <span>Updated <b>Apr 2026</b></span>
+</div>
+
+<div class="moves">
+  <span class="moves-label">Recent moves</span>
+  <div class="moves-list">
+    <span>Tempo mainnet (Mar 18)</span>
+    <span>Stripe × Tempo ship MPP</span>
+    <span>Mastercard acq. BVNK $1.8B</span>
+    <span>Profound raises $96M (Sequoia)</span>
+    <span>Shopify × Google launch UCP</span>
+    <span>x402 V2 + Nevermined × Visa</span>
+  </div>
+</div>
 
 <div class="legend">
   <span><span class="star">★</span> Featured leader</span>
@@ -188,20 +223,6 @@
         <a class="chip" href="https://rye.com" target="_blank" rel="noopener" data-blurb="Universal checkout API — one integration to buy from any online merchant."><img src="https://www.google.com/s2/favicons?domain=rye.com&sz=64" alt=""><span class="chip-n">Rye</span><span class="tag raised">$14M a16z</span></a>
         <a class="chip" href="https://lemrock.com" target="_blank" rel="noopener" data-blurb="European agent-commerce infra for cross-border checkout and fulfillment."><img src="https://www.google.com/s2/favicons?domain=lemrock.com&sz=64" alt=""><span class="chip-n">Lemrock</span><span class="tag raised">€6M</span></a>
         <a class="chip" href="https://firmly.ai" target="_blank" rel="noopener" data-blurb="Headless checkout that drops into any surface, including LLM chat UIs."><img src="https://www.google.com/s2/favicons?domain=firmly.ai&sz=64" alt=""><span class="chip-n">Firmly</span></a>
-      </div>
-    </div>
-
-    <div class="cat">
-      <div class="cat-hdr"><span class="cat-name">Protocols & Standards</span><span class="cat-note">how LLMs talk to commerce</span></div>
-      <div class="chips">
-        <a class="chip feat" href="https://agenticcommerce.dev" target="_blank" rel="noopener" data-blurb="Agentic Commerce Protocol — open Stripe + OpenAI spec for agent-initiated checkouts."><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">ACP · Stripe × OpenAI<span class="star">★</span></span><span class="tag proto">Proto</span></a>
-        <a class="chip feat" href="https://x402.org" target="_blank" rel="noopener" data-blurb="Coinbase-incubated payment protocol reviving HTTP 402. V2 shipped Dec 2025; 75M txns / $24M processed."><img src="https://www.google.com/s2/favicons?domain=coinbase.com&sz=64" alt=""><span class="chip-n">x402 · Coinbase<span class="star">★</span></span><span class="tag proto">Proto</span></a>
-        <a class="chip feat" href="https://ap2.dev" target="_blank" rel="noopener" data-blurb="Agent Payments Protocol — Google-led standard with 60+ partners including Mastercard, Amex, PayPal."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">AP2 · Google<span class="star">★</span></span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://shopify.engineering/ucp" target="_blank" rel="noopener" data-blurb="Universal Cart Protocol — Shopify × Google, Jan 2026. Lets agents build one cart across multiple merchants."><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt=""><span class="chip-n">UCP · Shopify × Google</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://tempo.xyz" target="_blank" rel="noopener" data-blurb="Machine Payments Protocol — Stripe × Tempo, Mar 2026. Built-in primitives for agent-to-agent value transfer."><img src="https://www.google.com/s2/favicons?domain=tempo.xyz&sz=64" alt=""><span class="chip-n">MPP · Stripe × Tempo</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://modelcontextprotocol.io" target="_blank" rel="noopener" data-blurb="Anthropic's Model Context Protocol — the emerging standard for tool and data connectors."><img src="https://www.google.com/s2/favicons?domain=modelcontextprotocol.io&sz=64" alt=""><span class="chip-n">MCP · Anthropic</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://a2aproject.dev" target="_blank" rel="noopener" data-blurb="Google's Agent-to-Agent protocol for interoperable agent handoffs."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">A2A · Google</span><span class="tag proto">Proto</span></a>
-        <a class="chip" href="https://schema.org" target="_blank" rel="noopener" data-blurb="Product schema that LLMs crawl to ground commerce answers in structured data."><img src="https://www.google.com/s2/favicons?domain=schema.org&sz=64" alt=""><span class="chip-n">Schema.org</span><span class="tag proto">Proto</span></a>
       </div>
     </div>
 
@@ -318,10 +339,26 @@
 <!-- ════════ SHARED ════════ -->
 <div class="shared">
   <div class="shared-hdr">
-    <h2>Shared Infrastructure</h2>
-    <span class="flow">both markets depend on these</span>
+    <h2>Shared Layer</h2>
+    <span class="flow">protocols, models, money — used by both markets</span>
   </div>
   <div class="shared-body">
+
+    <div class="cat" style="margin:0">
+      <div class="cat-hdr"><span class="cat-name">Protocols & Standards</span><span class="cat-note">how LLMs, agents, and commerce talk to each other</span></div>
+      <div class="chips">
+        <a class="chip feat" href="https://agenticcommerce.dev" target="_blank" rel="noopener" data-blurb="Agentic Commerce Protocol — open Stripe + OpenAI spec for agent-initiated checkouts."><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=64" alt=""><span class="chip-n">ACP · Stripe × OpenAI<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip feat" href="https://x402.org" target="_blank" rel="noopener" data-blurb="Coinbase-incubated payment protocol reviving HTTP 402. V2 shipped Dec 2025; 75M txns / $24M processed."><img src="https://www.google.com/s2/favicons?domain=coinbase.com&sz=64" alt=""><span class="chip-n">x402 · Coinbase<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip feat" href="https://ap2.dev" target="_blank" rel="noopener" data-blurb="Agent Payments Protocol — Google-led standard with 60+ partners including Mastercard, Amex, PayPal."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">AP2 · Google<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip feat" href="https://modelcontextprotocol.io" target="_blank" rel="noopener" data-blurb="Anthropic's Model Context Protocol — the emerging standard for tool and data connectors."><img src="https://www.google.com/s2/favicons?domain=modelcontextprotocol.io&sz=64" alt=""><span class="chip-n">MCP · Anthropic<span class="star">★</span></span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://shopify.engineering/ucp" target="_blank" rel="noopener" data-blurb="Universal Cart Protocol — Shopify × Google, Jan 2026. Lets agents build one cart across multiple merchants."><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt=""><span class="chip-n">UCP · Shopify × Google</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://tempo.xyz" target="_blank" rel="noopener" data-blurb="Machine Payments Protocol — Stripe × Tempo, Mar 2026. Built-in primitives for agent-to-agent value transfer."><img src="https://www.google.com/s2/favicons?domain=tempo.xyz&sz=64" alt=""><span class="chip-n">MPP · Stripe × Tempo</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://a2aproject.dev" target="_blank" rel="noopener" data-blurb="Google's Agent-to-Agent protocol for interoperable agent handoffs."><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt=""><span class="chip-n">A2A · Google</span><span class="tag proto">Proto</span></a>
+        <a class="chip" href="https://schema.org" target="_blank" rel="noopener" data-blurb="Product schema that LLMs crawl to ground commerce answers in structured data."><img src="https://www.google.com/s2/favicons?domain=schema.org&sz=64" alt=""><span class="chip-n">Schema.org</span><span class="tag proto">Proto</span></a>
+      </div>
+    </div>
+
+    <div class="shared-grid">
 
     <div class="cat" style="margin:0">
       <div class="cat-hdr"><span class="cat-name">Foundation Models</span></div>
@@ -354,11 +391,13 @@
       </div>
     </div>
 
+    </div><!-- /shared-grid -->
+
   </div>
 </div>
 
 <div class="footer">
-  Agentic Commerce Market Map · v2 · April 2026 · Based on the Artemis Agentic Commerce Landscape · Inclusion is editorial, not a ranking · <a href="https://github.com/logan1085/agenticpayments" target="_blank" rel="noopener">source on github</a>
+  Agentic Commerce Market Map · v3 · April 2026 · Based on the Artemis Agentic Commerce Landscape · Inclusion is editorial, not a ranking · <a href="https://github.com/logan1085/agenticpayments" target="_blank" rel="noopener">source on github</a>
 </div>
 
 </div>
